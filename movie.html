@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="movies in theaters"/>
     <link rel="stylesheet" href="css/typo.css"/>
-    <link rel="shortcut icon" href="../res/favicon.png">
+    <link rel="shortcut icon" href="res/favicon.png">
     <title>Movies in theaters - douban</title>
     <style>
     code{ color:#0066bb; }
@@ -46,7 +46,8 @@
                 $("#book_"+ movie.id).append("<a class='book-cover' id='book_cover_"+ movie.id +"' href="+movie.alt+"></a>");
                 $("#book_cover_"+ movie.id).append("<img src="+movie.images.medium+" alt="+movie.title+">");
                 $("#book_"+ movie.id).append("<div class='book-meta' id='book_meta_"+ movie.id +"'></div>");
-                $("#book_meta_" + movie.id).append("<a class='book-title' href="+movie.alt+">"+movie.title+" | <i class='serif'>"+movie.rating.average+"</i> ("+movie.ratings_count+decodeURI("%e4%ba%ba%e8%af%84%e4%bb%b7")+")</a>");
+                $("#book_meta_" + movie.id).append("<a class='book-title' href="+movie.alt+" id='book_title_"+ movie.id +"'></a>");
+                $("#book_title_" + movie.id).append(movie.title +" | <i class='serif'>"+movie.rating.average+"</i> ("+movie.ratings_count+decodeURI("%e4%ba%ba%e8%af%84%e4%bb%b7")+")");
                 $("#book_meta_" + movie.id).append("<p class='book-author' id='book_author_"+ movie.id +"'></p>");  
                 $.each(movie.directors, function(index, director){
                     $("#book_author_" + movie.id).append(director.name + ' ');

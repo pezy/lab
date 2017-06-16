@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="Some books that I have read and am reading."/>
     <link rel="stylesheet" href="css/typo.css"/>
-    <link rel="shortcut icon" href="../res/favicon.png">
+    <link rel="shortcut icon" href="res/favicon.png">
     <title>Reading List — pezy</title>
     <style>
     code{ color:#0066bb; }
@@ -33,20 +33,15 @@
 <script type="text/javascript">
     $.getJSON("data/book.json", function( book ) {
         $.each( book, function (id, url) {
+            $("body").append("<div class='book' id='book_"+ id +"'></div>");
             $.getJSON("https://api.douban.com/v2/book/"+id+"?alt=xd&callback=?", function(book) {
-                var title = book.title ? book.title : "";
-                var tmp;
-                tmp  = "<div class='book'>";
-                tmp += "<a class='book-cover' href="+book.alt+">";
-                tmp += "<img src="+book.image+" alt="+title+"></a>";
-                tmp += "<div class='book-meta'>";
-                tmp += "<a class='book-title' href="+url+">"+title+"</a>";
-                if (book.author)
-                    tmp += "<p class='book-author'>"+book.author+"</p>";
-                if (book.rating.average)
-                    tmp += "<p class='book-description'><i class='serif'>"+book.rating.average+"</i> ("+book.rating.numRaters+decodeURI("%e4%ba%ba%e8%af%84%e4%bb%b7")+")</p>";
-                tmp += "</div></div>";
-                document.body.innerHTML += tmp;
+                $("#book_" + id).append("<a class='book-cover' id='book_cover_"+ id +"' href="+ book.alt +"></a>");
+                $("#book_cover_" + id).append("<img src="+ book.image +" alt="+ book.title +">");
+                $("#book_" + id).append("<div class='book-meta' id='book_meta_"+ id +"'></div>");
+                $("#book_meta_" + id).append("<a class='book-title' id='book_title_"+ id +"' href="+url+"></a>");
+                $("#book_title_" + id).append(book.title);
+                $("#book_meta_" + id).append("<p class='book-author'>"+book.author+"</p>");
+                $("#book_meta_" + id).append("<p class='book-description'><i class='serif'>"+book.rating.average+"</i> ("+book.rating.numRaters+decodeURI("%e4%ba%ba%e8%af%84%e4%bb%b7")+")</p>");
             });
         });
     });
