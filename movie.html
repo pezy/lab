@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="movies in theaters"/>
+    <link rel="stylesheet" href="css/typo.css"/>
+    <link rel="shortcut icon" href="../res/favicon.png">
+    <title>Movies in theaters - douban</title>
+    <style>
+    code{ color:#0066bb; }
+    a { color: #0066bb; }
+    html{ background:#fff; }
+    body { min-width: 200px; max-width: 790px; margin: 0 auto; padding: 30px; }
+    pre{white-space:pre-wrap;}
+    .book { margin: 20px 0 60px; padding-bottom: 20px; zoom: 1; }
+    .book .book-cover { float: left; margin-right: 40px; }
+    .book .book-meta { overflow: hidden; }
+    .book .book-title { font-size: 26px; font-family: Georgia,"Hiragino Mincho Pro","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif; text-decoration: none; }
+    .book .book-author { margin: 16px 0 20px; color: #999; }
+    .book:after { display: table; content: ""; clear: both; width: 30%; padding-top: 40px; border-bottom: 1px solid #eee; margin: 0 auto; }
+    i.serif{ text-transform:lowercase; color:#0066bb; }
+    :-moz-any(h2) i.serif{ text-transform: capitalize; }
+    i.serif:hover{ color:inherit; }
+    #wrapper{ padding:5% 10%; position:relative;}
+    </style>
+</head>
+<body>
+<div id="wrapper" class="typo typo-selection">
+    <h2>当前热映电影(北京)</h2>
+</div>
+<script src="js/jquery-1.11.3.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $.getJSON("http://api.douban.com/v2/movie/in_theaters?alt=xd&callback=?", function(theaters) {
+        var movies_in_theaters = []
+        $.each(theaters.subjects, function(index, movie) {
+            if (movie.rating.average == 0) return true;
+            movies_in_theaters.push({id: movie.id, average_rating: movie.rating.average});
+        });
+        movies_in_theaters.sort(function(a, b) {
+            return b.average_rating - a.average_rating;
+        });
+        for (var i = 0; i < movies_in_theaters.length; i++) {
+            $("body").append("<div class='book' id='book_"+ movies_in_theaters[i].id +"'></div>");
+            $.getJSON("http://api.douban.com/v2/movie/subject/"+ movies_in_theaters[i].id +"?alt=xd&callback=?", function(movie){
+                $("#book_"+ movie.id).append("<a class='book-cover' id='book_cover_"+ movie.id +"' href="+movie.alt+"></a>");
+                $("#book_cover_"+ movie.id).append("<img src="+movie.images.medium+" alt="+movie.title+">");
+                $("#book_"+ movie.id).append("<div class='book-meta' id='book_meta_"+ movie.id +"'></div>");
+                $("#book_meta_" + movie.id).append("<a class='book-title' href="+movie.alt+">"+movie.title+" | <i class='serif'>"+movie.rating.average+"</i> ("+movie.ratings_count+decodeURI("%e4%ba%ba%e8%af%84%e4%bb%b7")+")</a>");
+                $("#book_meta_" + movie.id).append("<p class='book-author' id='book_author_"+ movie.id +"'></p>");  
+                $.each(movie.directors, function(index, director){
+                    $("#book_author_" + movie.id).append(director.name + ' ');
+                });
+                $("#book_author_" + movie.id).append('| ');
+                $.each(movie.casts, function(index, cast){
+                    $("#book_author_" + movie.id).append(cast.name + ' ');
+                });
+                $("#book_meta_" + movie.id).append("<p class='book-description' id='book_description_"+ movie.id +"'></p>");
+                $("#book_description_" + movie.id).append(movie.summary);
+            });
+        }
+    });
+</script>
+</body>
+</html>
