@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="movies in theaters"/>
     <link rel="stylesheet" href="css/typo.css"/>
-    <link rel="shortcut icon" href="res/favicon.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="res/favicon_152.png">
+    <link rel="icon" href="res/favicon.ico">
     <title>Movies in theaters - douban</title>
     <style>
     code{ color:#0066bb; }
@@ -31,6 +32,7 @@
 </div>
 <script src="js/jquery-1.11.3.min.js" type="text/javascript"></script>
 <script type="text/javascript">
+    console.log("你来啦, 想改进哪方面?请直接 fork 我: https://github.com/pezy/lab#fork-destination-box\n有什么想法也可以给我留言：https://github.com/pezy/lab/issues/new");
     $.getJSON("http://api.douban.com/v2/movie/in_theaters?alt=xd&callback=?", function(theaters) {
         var movies_in_theaters = []
         $.each(theaters.subjects, function(index, movie) {
@@ -43,10 +45,10 @@
         for (var i = 0; i < movies_in_theaters.length; i++) {
             $("body").append("<div class='book' id='book_"+ movies_in_theaters[i].id +"'></div>");
             $.getJSON("http://api.douban.com/v2/movie/subject/"+ movies_in_theaters[i].id +"?alt=xd&callback=?", function(movie){
-                $("#book_"+ movie.id).append("<a class='book-cover' id='book_cover_"+ movie.id +"' href="+movie.alt+"></a>");
+                $("#book_"+ movie.id).append("<a class='book-cover' id='book_cover_"+ movie.id +"' href="+movie.alt+" target='_blank'></a>");
                 $("#book_cover_"+ movie.id).append("<img src="+movie.images.medium+" alt="+movie.title+">");
                 $("#book_"+ movie.id).append("<div class='book-meta' id='book_meta_"+ movie.id +"'></div>");
-                $("#book_meta_" + movie.id).append("<a class='book-title' href="+movie.alt+" id='book_title_"+ movie.id +"'></a>");
+                $("#book_meta_" + movie.id).append("<a class='book-title' id='book_title_"+ movie.id +"' href="+movie.alt+" target='_blank'></a>");
                 $("#book_title_" + movie.id).append(movie.title +" | <i class='serif'>"+movie.rating.average+"</i> ("+movie.ratings_count+decodeURI("%e4%ba%ba%e8%af%84%e4%bb%b7")+")");
                 $("#book_meta_" + movie.id).append("<p class='book-author' id='book_author_"+ movie.id +"'></p>");  
                 $.each(movie.directors, function(index, director){
