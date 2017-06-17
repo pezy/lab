@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/typo.css"/>
     <link rel="apple-touch-icon" sizes="152x152" href="res/favicon_152.png">
     <link rel="icon" href="res/favicon.ico">
-    <title>Movies in theaters - douban</title>
+    <title>Hot movies</title>
     <style>
     code{ color:#0066bb; }
     a { color: #0066bb; }
@@ -19,6 +19,7 @@
     .book .book-meta { overflow: hidden; }
     .book .book-title { font-size: 26px; font-family: Georgia,"Hiragino Mincho Pro","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif; text-decoration: none; }
     .book .book-author { margin: 16px 0 20px; color: #999; }
+    .book .book-introduction { cursor: pointer }
     .book:after { display: table; content: ""; clear: both; width: 30%; padding-top: 40px; border-bottom: 1px solid #eee; margin: 0 auto; }
     i.serif{ text-transform:lowercase; color:#0066bb; }
     :-moz-any(h2) i.serif{ text-transform: capitalize; }
@@ -58,8 +59,13 @@
                 $.each(movie.casts, function(index, cast){
                     $("#book_author_" + movie.id).append(cast.name + ' ');
                 });
+                $("#book_meta_" + movie.id).append("<p class='book-introduction' id='book_introduction_"+ movie.id +"'>剧情简介&darr;</p>");
                 $("#book_meta_" + movie.id).append("<p class='book-description' id='book_description_"+ movie.id +"'></p>");
                 $("#book_description_" + movie.id).append(movie.summary);
+                $("#book_description_" + movie.id).hide();
+                $("#book_introduction_" + movie.id).click(function(){
+                    $("#book_description_" + movie.id).toggle();
+                });
             });
         }
     });
