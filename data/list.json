@@ -1,5 +1,14 @@
 [
   {
+    "title": "Nextcloud",
+    "url": "https://nextcloud.com/",
+    "tags": [
+      "Tools"
+    ],
+    "brief": "搭建个人云系统",
+    "view": 1
+  },
+  {
     "title": "stanford-graphics-cs148",
     "url": "https://graphics.stanford.edu/wikis/cs148-10-fall/FrontPage",
     "tags": [
