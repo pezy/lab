@@ -8,3 +8,4 @@ Ideas won't keep. Something must be done about them.
 - Essential software for work: [tools](http://lab.devnotes.org/tools.html)
 - Reading list: [reading](http://lab.devnotes.org/reading.html)
 - Movies in theaters: [movie](http://lab.devnotes.org/movie.html)
+- Share my best poems: [poem](http://lab.devnotes.org/poem.html)
