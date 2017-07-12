@@ -6,8 +6,8 @@
                 "link": "http://msdn.itellyou.cn",
                 "brief": "Visual Studio developer tools"
             },
-            "Qt 5.8.0": {
-                "link": "http://download.qt.io/official_releases/qt/5.8/5.8.0/qt-opensource-windows-x86-msvc2015_64-5.8.0.exe",
+            "Qt 5.9.1": {
+                "link": "http://download.qt.io/official_releases/qt/5.9/5.9.1/qt-opensource-windows-x86-5.9.1.exe",
                 "brief": "Cross-platform software development for embedded & desktop"
             },
             "Qt VS Addin": {
@@ -133,7 +133,8 @@
             },
             "迅雷纯净版": {
                 "link": "http://down.sandai.net/thunderspeed/ThunderSpeed1.0.33.358.exe",
-                "brief": "迅雷最后的良心"
+                "brief": "迅雷最后的良心",
+				"mark": "Win7"
             },
             "QQ TIM": {
                 "link": "http://tim.qq.com/",
