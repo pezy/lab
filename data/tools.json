@@ -34,9 +34,9 @@
                 "link": "https://www.google.com/intl/en/chrome/browser/desktop/index.html?standalone=1",
                 "brief": "A fast, secure, and free web browser built for the modern web"
             },
-            "WhiteStarUML": {
-                "link": "https://sourceforge.net/projects/whitestaruml/files/",
-                "brief": "UML modeling tool derived from StarUML compatible with Windows 7-10"
+            "StarUML": {
+                "link": "http://staruml.io/download",
+                "brief": "A sophisticated software modeler."
             },
             "git": {
                 "link": "https://git-scm.com/",
